@@ -1,0 +1,218 @@
+\usepackage{fontspec} % XeTeX
+\usepackage{xunicode} % Unicode для XeTeX
+\usepackage[utf8x]{inputenc}
+\usepackage[english,russian]{babel}
+
+%code listings
+\usepackage{listings}
+
+\usepackage[dvipsnames]{xcolor}
+\lstdefinelanguage{Kotlin}{
+    comment=[l]{//},
+    commentstyle={\color{gray}\ttfamily},
+    emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
+    emphstyle={\color{OrangeRed}},
+    identifierstyle=\color{black},
+    keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+    keywordstyle={\color{NavyBlue}\bfseries},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[s]{"""*}{*"""},
+    ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
+    ndkeywordstyle={\color{BurntOrange}\bfseries},
+    sensitive=true,
+    stringstyle={\color{ForestGreen}\ttfamily},
+}
+
+\definecolor{lightgray}{rgb}{.93,.93,.93}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{TypeScript}{
+    keywords={this, typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+    ndkeywords={private, class, export, boolean, number, throw, implements, import, this},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    morestring=[b]"
+}
+
+\lstdefinelanguage{Kotlin}{
+    comment=[l]{//},
+    emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
+    keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[s]{"""*}{*"""},
+    ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
+    sensitive=true,
+}
+
+\lstset{
+    extendedchars=true,
+    basicstyle=\footnotesize\ttfamily,
+    showstringspaces=false,
+    showspaces=false,
+    numbers=left,
+    numberstyle=\footnotesize,
+    numbersep=8pt,
+    tabsize=2,
+    breaklines=true,
+    showtabs=true,
+    captionpos=b,
+    identifierstyle=\color{black},
+    emphstyle={\color{OrangeRed}},
+    backgroundcolor=\color{lightgray},
+    keywordstyle={\color{NavyBlue}\bfseries},
+    commentstyle=\color{purple}\ttfamily,
+    ndkeywordstyle={\color{Blue}\bfseries},
+    stringstyle={\color{ForestGreen}\ttfamily},
+}
+
+
+% Шрифты, xelatex
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman} % Нормоконтроллеры хотят именно его
+\newfontfamily\cyrillicfont{Times New Roman}
+% \setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
+\setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
+
+% Русский язык
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+
+\usepackage{enumerate}
+\usepackage{indentfirst}
+\usepackage{float}
+
+%images
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{chngcntr}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
+    linkcolor={black}, citecolor={black}, filecolor={black}
+}
+
+\renewcommand{\baselinestretch}{1.5} % Полуторный межстрочный интервал
+\parindent 1.63cm % Абзацный отступ
+
+\sloppy             % Избавляемся от переполнений
+\hyphenpenalty=1000 % Частота переносов
+\clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+
+%page paddings
+\usepackage{geometry}
+\geometry{left=3cm}
+\geometry{right=1cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=15mm} % Отступы в списках
+
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep}                           % Нет отступов между пунктами списка
+\renewcommand{\labelitemi}{\bfseries\textbullet} % Маркер списка
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+
+% Содержание
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeTextUppercase} % СОДЕРЖАНИЕ
+\renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
+\setcounter{tocdepth}{2}                            % Глубина оглавления, до subsubsection
+
+% Нумерация страниц посередине сверху
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\textrm{\thepage}}
+\fancyheadoffset{0mm}
+\fancyfootoffset{0mm}
+\setlength{\headheight}{17pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \cfoot{\textrm{\thepage}}
+}
+
+% Формат подрисуночных надписей
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
+\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись рисунка по центру
+\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+\captionsetup[lstlisting]{justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись листинга по центру
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
+\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг}} % TODO check listing numbering
+%\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг \thesection.\arabic{lstlisting}}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+% Заголовки секций в оглавлении в верхнем регистре
+\usepackage{textcase}
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{
+    \expandafter\ifx\csname l@#1\endcsname\l@section
+    \expandafter\@firstoftwo
+    \else
+    \expandafter\@secondoftwo
+    \fi
+    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+    {\oldcontentsline{#1}{#2}}
+}
+\makeatother
+
+% Оформление заголовков
+\usepackage[compact,explicit]{titlesec}
+\titleformat{\section}{\Large\bfseries}{}{0mm}{\clearpage\centering{\MakeUppercase{#1}}\vspace{1.5em}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
+\titleformat{\subsection}[block]{\large\bfseries}{}{1.5cm}{\thesubsection\quad#1}
+\titleformat{\subsubsection}[block]{\normalsize\bfseries}{}{15mm}{\thesubsubsection\quad#1}
+\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+\titlespacing*{\subsection}{0mm}{0.3em}{0.2em}
+
+\usepackage{lastpage} % Подсчет количества страниц
+\setcounter{page}{2}  % Начало нумерации страниц
+
+% Пользовательские функции
+% Секции без номеров (введение, заключение...), вместо section*{}
+\newcommand{\anonsection}[1]{
+    \section{#1}\label{sec:#1}
+    \addcontentsline{toc}{section}{#1}
+}
+
+\newcommand{\addimg}[4]{ % Добавление одного рисунка
+    \begin{figure}
+        \centering
+        \includegraphics[width=#2\linewidth]{#1}
+        \caption{\bfseries{#3}} \label{#1}
+    \end{figure}
+}
+\newcommand{\addimghere}[4]{ % Добавить рисунок непосредственно в это место
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#2\linewidth]{#1}
+        \caption{#3} \label{#1}
+    \end{figure}
+}
+
+\definecolor{shadecolor}{RGB}{255,255,0}
+\newcommand{\TODO}[1]{\setlength\fboxsep{15pt}\par\noindent\colorbox{shadecolor}
+{\textcolor{red}{\bfseries\parbox{\dimexpr\textwidth-2\fboxsep\relax}{TODO: #1}}}}
+
+\usepackage{xassoccnt}
+\NewTotalDocumentCounter{totalfigures}
+\NewTotalDocumentCounter{totallistings}
+\DeclareAssociatedCounters{figure}{totalfigures}
+\DeclareAssociatedCounters{lstlisting}{totallistings}
+
+\usepackage[autostyle]{csquotes}

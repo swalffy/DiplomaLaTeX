@@ -1,0 +1,62 @@
+%!TEX TS-program = xelatex
+\documentclass[14pt,a4paper]{scrartcl}
+
+\input{preamble.tex}
+
+\begin{document}
+
+    \input{sec/titlepage.tex}
+
+    \input{sec/0-cw.tex}
+
+    \tableofcontents
+
+%    \input{sec/0-glossary.tex}
+    \input{sec/0-intro.tex}
+    \input{sec/1-analysis.tex}
+
+    % #### CHARPTER 2 - Designing ####
+    \section[Глава 2 Проектирование системы разрабатываемых приложений]{Глава 2\break Проектирование системы разрабатываемых приложений}
+    \label{sec:charpter-2-designing}
+
+    \input{sec/2-dev-stages}
+    \input{sec/2-functionality}
+    \input{sec/2-architecture}
+
+    \subsection{Проектирование диаграммы вариантов использования}\label{subsec:design-use-case}\indent
+
+    Диаграмма вариантов использования представлена на рисунке \ref{use-case}
+    \addimghere{use-case}{0.7}{Диаграмма вариантов использования}
+
+    \subsection{Проектирование базы данных}\label{subsec:design-db}\indent
+
+    \TODO{Ссылка на приложение}
+    Спроектированная диаграмма базы данных представлена в Приложении 1
+
+    \input{sec/2-mockup.tex}
+    \input{sec/2-tech-review.tex}
+    \input{sec/2-common-components.tex}
+    \input{sec/2-activity-diagram.tex}
+
+    \subsection{Вывод по главе 2}\label{subsec:2-conclusion}\indent
+
+    Во второй главе были описаны основные этапы разработки приложения, описаны функционал, а также основные технологии и фреймворки, которые будут использованы в процессе разработки, представлена диаграмма вариантов использования, схема БД, диаграммы деятельности, макеты основных экранов и сформированы требования для каждого из экранов разрабатываемых клиентов.
+
+    Все упомянутые выше элементы будут реализованы во время разработки продукта, процесс которой описан в следующей главе.
+
+    % #### CHARPTER 3 - Implementation ####
+    \section[Глава 3 Реализация системы приложений интернет-магазина]{Глава 3\break Реализация системы приложений интернет-магазина}
+    \label{sec:charpter-3-inplementation}
+
+    \input{sec/3-impl-server.tex}
+    \input{sec/3-impl-web.tex}
+    \input{sec/3-impl-android.tex}
+
+    \subsection{Вывод по главе 3}\label{subsec:3-conclusion}\indent
+
+    В данной главе были рассмотрены основные архитектурные решения реализации проекта, описаны основные классы, которые использовались при написании.
+    Кроме всего прочего, была разобрана система сборки каждого из проектов.
+
+    \input{sec/closing.tex}
+
+\end{document}
