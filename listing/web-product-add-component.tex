@@ -1,0 +1,179 @@
+\begin{lstlisting}[
+  language=HTML5,
+  label={lis:web-product-add-component}
+]
+<mat-horizontal-stepper [linear]="true"
+                        (selectionChange)="onSelectionChange($event)">
+    <mat-step label="User primary data"
+              [stepControl]="primaryDataForm">
+        <form [formGroup]="primaryDataForm" class="container">
+            <mat-form-field>
+                <input matInput
+                       placeholder="Unp"
+                       formControlName="unp">
+                <mat-error *ngIf="!isValidFormField('unp')">
+                    Unp must contain exactly 9 numbers
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       placeholder="email"
+                       formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       placeholder="phone"
+                       formControlName="phone">
+                <span matSuffix>руб.</span>
+                <mat-error *ngIf="!isValidFormField('phone')">
+                    Enter valid float value from 0.0 to 9999.0
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       placeholder="name"
+                       formControlName="name">
+                <span matSuffix>шт.</span>
+                <mat-error *ngIf="!isValidFormField('name')">
+                    Enter valid int value from 1 to 9999
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput
+                       placeholder="name"
+                       formControlName="name">
+                <span matSuffix>шт.</span>
+                <mat-error *ngIf="!isValidFormField('name')">
+                    Enter valid int value from 1 to 9999
+                </mat-error>
+            </mat-form-field>
+            <button color="accent"
+                    mat-raised-button
+                    matStepperNext
+                    [disabled]="primaryDataForm.invalid">
+                Next
+            </button>
+
+        </form>
+    </mat-step>
+
+    <mat-step label="Product colors"
+              [stepControl]="colorsDataForm">
+        <form [formGroup]="colorsDataForm" class="container">
+            <div class="two_cols">
+                <mat-checkbox *ngFor="let color of colorsArray; let i = index" [formControlName]="i">
+                    {{color.article}} - {{color.title}}
+                </mat-checkbox>
+            </div>
+            <div>
+                <button color="accent" mat-raised-button matStepperPrevious>Back</button>
+                <button color="accent" mat-raised-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step label="Product options data"
+              [stepControl]="optionsDataForm">
+        <form [formGroup]="optionsDataForm" class="container">
+            <ng-container *ngFor="let option of optionArray; let i = index;"
+                          [ngSwitch]="option.type">
+                <mat-slide-toggle *ngSwitchCase="OptionType.BOOL"
+                                  [formControlName]="i">
+                    {{option.title}}
+                </mat-slide-toggle>
+
+                <mat-form-field *ngSwitchCase="OptionType.INT">
+                    <input matInput
+                           formControlName="{{i}}"
+                           [placeholder]="option.title">
+                    <span *ngIf="option.unit" matSuffix>{{option.unit}}</span>
+                </mat-form-field>
+
+                <mat-form-field *ngSwitchCase="OptionType.FLOAT">
+                    <input matInput
+                           formControlName="{{i}}"
+                           [placeholder]="option.title">
+                    <span *ngIf="option.unit" matSuffix>{{option.unit}}</span>
+                </mat-form-field>
+
+                <mat-form-field *ngSwitchDefault>
+                    <input matInput
+                           formControlName="{{i}}"
+                           [placeholder]="option.title">
+                    <span *ngIf="option.unit" matSuffix>{{option.unit}}</span>
+                </mat-form-field>
+            </ng-container>
+
+            <div>
+                <button color="accent" mat-raised-button matStepperPrevious>Back</button>
+                <button color="accent" mat-raised-button matStepperNext
+                        [disabled]="optionsDataForm.invalid">Next
+                </button>
+            </div>
+        </form>
+    </mat-step>
+
+    <mat-step label="Check and submit">
+        <div class="container">
+            <mat-card>
+                <mat-card-title>{{checkPrimaryLine}}</mat-card-title>
+                <mat-card-subtitle>{{checkSecondaryLine}}</mat-card-subtitle>
+                <mat-card-content>
+                    <mat-divider></mat-divider>
+
+                    <table class="check_table">
+                        <tr>
+                            <td>In package:</td>
+                            <td>{{productModel.packing | count}}</td>
+                        </tr>
+                        <tr>
+                            <td>Price:</td>
+                            <td>{{productModel.price | price}}</td>
+                        </tr>
+                        <tr>
+                            <td>Is price for pack:</td>
+                            <td>{{productModel.priceForPack}}</td>
+                        </tr>
+                        <tr>
+                            <td>Package price:</td>
+                            <td>{{productModel | price}}</td>
+                        </tr>
+                    </table>
+
+                    <mat-divider></mat-divider>
+
+                    <table class="check_table">
+                        <ng-container *ngFor="let option of productModel.options">
+                            <tr>
+                                <td>{{option.title}}</td>
+                                <td>{{option.value}} {{option.unit}}</td>
+                            </tr>
+                        </ng-container>
+                    </table>
+
+                    <mat-divider></mat-divider>
+
+                    <mat-list *ngIf="productModel.colors && productModel.colors.length > 0">
+                        <mat-list-item *ngFor="let color of productModel.colors">
+                            {{color.article}} {{color.title}}
+                        </mat-list-item>
+                    </mat-list>
+
+                </mat-card-content>
+            </mat-card>
+
+            <div>
+                <button color="accent" mat-raised-button matStepperPrevious>Back</button>
+                <button color="accent" mat-raised-button matStepperNext
+                        (click)="onStepComplete(StepType.CHECK)"
+                        [disabled]="(primaryDataForm.invalid || optionsDataForm.invalid)">Submit
+                </button>
+            </div>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+\end{lstlisting}

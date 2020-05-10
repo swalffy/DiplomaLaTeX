@@ -7,75 +7,97 @@
 \usepackage{listings}
 
 \usepackage[dvipsnames]{xcolor}
-\lstdefinelanguage{Kotlin}{
-    comment=[l]{//},
-    commentstyle={\color{gray}\ttfamily},
-    emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
-    emphstyle={\color{OrangeRed}},
-    identifierstyle=\color{black},
-    keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
-    keywordstyle={\color{NavyBlue}\bfseries},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]",
-    morestring=[s]{"""*}{*"""},
-    ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
-    ndkeywordstyle={\color{BurntOrange}\bfseries},
-    sensitive=true,
-    stringstyle={\color{ForestGreen}\ttfamily},
-}
 
 \definecolor{lightgray}{rgb}{.93,.93,.93}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
 \lstdefinelanguage{TypeScript}{
-    keywords={this, typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-    ndkeywords={private, class, export, boolean, number, throw, implements, import, this},
-    sensitive=false,
-    comment=[l]{//},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]',
-    morestring=[b]"
+  keywords={this, typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  ndkeywords={private, class, export, boolean, number, throw, implements, import, this},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
 }
 
 \lstdefinelanguage{Kotlin}{
-    comment=[l]{//},
-    emph={delegate, filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println, return@},
-    keywords={abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]",
-    morestring=[s]{"""*}{*"""},
-    ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String},
-    sensitive=true,
+  comment=[l]{//},
+  keywords={init, inner, abstract, actual, as, as?, break, by, class, companion, continue, data, do, dynamic, else, enum, expect, false, final, for, fun, get, if, import, in, interface, internal, is, null, object, override, package, private, public, return, set, super, suspend, this, throw, true, try, typealias, val, var, vararg, when, where, while},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Unit},
+  sensitive=true,
+}
+
+\lstdefinelanguage{HTML5}{
+  language=html,
+  sensitive=true,
+  alsoletter={<>=-},
+  otherkeywords={
+    <html>, <head>, <title>, </title>, <meta, />, </head>, <body>,
+    <form, </form>,
+    <mat-horizontal-stepper, </mat-horizontal-stepper>,
+    <mat-step, </mat-step>,
+    <mat-form-field, <\/mat-form-field>,
+    <mat-step, </mat-step>,
+    <mat-checkbox, </mat-checkbox>,
+    <ng-container, </ng-container>,
+    <mat-slide-toggle, </mat-slide-toggle>,
+    <mat-card>, </mat-card>,
+    <mat-card-title>, </mat-card-title>,
+    <mat-card-subtitle>, </mat-card-subtitle>,
+    <mat-card-content>, </mat-card-content>,
+    <mat-divider>,</mat-divider>,
+    <mat-list, </mat-list>,
+    <mat-list-item, </mat-list-item>,
+    <table, <tr>, <td>, </tr>, </td>, </table>,
+    <input, <mat-error, </mat-error>,
+    <div>, </div>, <div ,
+    <span, </span>, <button, </button>,
+    <canvas, \/canvas>, <script>, </script>, </body>, </html>, <!, html>, <style>, </style>, ><
+  },
+  ndkeywords={
+    =, matInput, ngIf, ngFor, ngSwitchCase, mat-raised-button, matStepperNext, matStepperPrevious,
+    charset=, id=, width=, height=,
+    border:, transform:, -moz-transform:, transition-duration:, transition-property:, transition-timing-function:
+  },
+  morecomment=[s]{<!--}{-->},
+  tag=[s]
+}
+
+\lstdefinelanguage{CSS}{
+  morestring=[s]{:}{;},
+  sensitive,
+  morecomment=[s]{/*}{*/}
 }
 
 \lstset{
-    extendedchars=true,
-    basicstyle=\footnotesize\ttfamily,
-    showstringspaces=false,
-    showspaces=false,
-    numbers=left,
-    numberstyle=\footnotesize,
-    numbersep=8pt,
-    tabsize=2,
-    breaklines=true,
-    showtabs=true,
-    captionpos=b,
-    identifierstyle=\color{black},
-    emphstyle={\color{OrangeRed}},
-    backgroundcolor=\color{lightgray},
-    keywordstyle={\color{NavyBlue}\bfseries},
-    commentstyle=\color{purple}\ttfamily,
-    ndkeywordstyle={\color{Blue}\bfseries},
-    stringstyle={\color{ForestGreen}\ttfamily},
+  extendedchars=true,
+  basicstyle=\linespread{0.3}\ttfamily\scriptsize,
+  showstringspaces=false,
+  showspaces=false,
+  numbers=left,
+  numberstyle=\footnotesize,
+  numbersep=8pt,
+  tabsize=2,
+  breaklines=true,
+  showtabs=true,
+  captionpos=b,
+  identifierstyle=\color{black},
+  emphstyle={\color{OrangeRed}},
+  keywordstyle={\color{NavyBlue}\bfseries},
+  commentstyle=\color{purple}\ttfamily,
+  ndkeywordstyle={\color{Blue}\bfseries},
+  stringstyle={\color{ForestGreen}\ttfamily},
 }
-
 
 % Шрифты, xelatex
 \defaultfontfeatures{Ligatures=TeX}
-\setmainfont{Times New Roman} % Нормоконтроллеры хотят именно его
+\setmainfont{Times New Roman}
 \newfontfamily\cyrillicfont{Times New Roman}
-% \setsansfont{Liberation Sans} % Тут я его не использую, но если пригодится
 \setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
 
 % Русский язык
@@ -93,8 +115,8 @@
 
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
-    linkcolor={black}, citecolor={black}, filecolor={black}
+  colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
+  linkcolor={black}, citecolor={black}, filecolor={black}
 }
 
 \renewcommand{\baselinestretch}{1.5} % Полуторный межстрочный интервал
@@ -107,7 +129,7 @@
 
 %page paddings
 \usepackage{geometry}
-\geometry{left=3cm}
+\geometry{left=25mm}
 \geometry{right=1cm}
 \geometry{top=2cm}
 \geometry{bottom=2cm}
@@ -142,15 +164,15 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{
-    \fancyhf{}
-    \cfoot{\textrm{\thepage}}
+  \fancyhf{}
+  \cfoot{\textrm{\thepage}}
 }
 
 % Формат подрисуночных надписей
 \RequirePackage{caption}
 \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
-\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись рисунка по центру
-\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+\captionsetup[figure]{font=small, justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись рисунка по центру
+\captionsetup[table]{font=small, justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
 \captionsetup[lstlisting]{justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись листинга по центру
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
 \addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг}} % TODO check listing numbering
@@ -162,20 +184,20 @@
 \makeatletter
 \let\oldcontentsline\contentsline
 \def\contentsline#1#2{
-    \expandafter\ifx\csname l@#1\endcsname\l@section
-    \expandafter\@firstoftwo
-    \else
-    \expandafter\@secondoftwo
-    \fi
-    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
-    {\oldcontentsline{#1}{#2}}
+  \expandafter\ifx\csname l@#1\endcsname\l@section
+  \expandafter\@firstoftwo
+  \else
+  \expandafter\@secondoftwo
+  \fi
+  {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+  {\oldcontentsline{#1}{#2}}
 }
 \makeatother
 
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{\Large\bfseries}{}{0mm}{\clearpage\centering{\MakeUppercase{#1}}\vspace{1.5em}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
-\titleformat{\subsection}[block]{\large\bfseries}{}{1.5cm}{\thesubsection\quad#1}
+\titleformat{\section}{\large\bfseries}{}{0mm}{\clearpage\centering{\MakeUppercase{#1}}\vspace{18pt}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
+\titleformat{\subsection}[block]{\fontsize{15}{18}\selectfont\bfseries}{}{1.5cm}{\thesubsection\quad#1}
 \titleformat{\subsubsection}[block]{\normalsize\bfseries}{}{15mm}{\thesubsubsection\quad#1}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 \titlespacing*{\subsection}{0mm}{0.3em}{0.2em}
@@ -186,23 +208,50 @@
 % Пользовательские функции
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
-    \section{#1}\label{sec:#1}
-    \addcontentsline{toc}{section}{#1}
+
+
+  \section{#1}\label{sec:#1}
+  \addcontentsline{toc}{section}{#1}
 }
 
 \newcommand{\addimg}[4]{ % Добавление одного рисунка
-    \begin{figure}
-        \centering
-        \includegraphics[width=#2\linewidth]{#1}
-        \caption{\bfseries{#3}} \label{#1}
-    \end{figure}
+  \begin{figure}
+    \centering
+    \includegraphics[width=#2\linewidth]{#1}
+    \caption{\small\bfseries{#3}} \label{#1}
+  \end{figure}
 }
 \newcommand{\addimghere}[4]{ % Добавить рисунок непосредственно в это место
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=#2\linewidth]{#1}
-        \caption{#3} \label{#1}
-    \end{figure}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=#2\linewidth]{#1}
+    \ifx&#3&%
+    \else
+    \caption{\small#3} \label{#1}
+    \fi
+  \end{figure}
+}
+
+\newcommand\capmystring[1]{\capmystringaux#1\relax}
+\def\capmystringaux#1#2\relax{\uppercase{#1}\lowercase{#2}}
+%\newcounter{additionCounter}
+\newcommand{\addition}[3] {
+  \clearpage
+  \refstepcounter{additionCounter}
+  \label{addition:#1}
+  \addcontentsline{toc}{section}{
+    \emph{\capmystring{Приложение} \theadditionCounter}. \capmystring{#2}
+  }
+
+  \begin{flushright}
+    \MakeUppercase{Приложение} \theadditionCounter
+  \end{flushright}
+
+  \begin{center}
+    \large\bfseries#2
+  \end{center}
+
+  #3
 }
 
 \definecolor{shadecolor}{RGB}{255,255,0}
@@ -212,7 +261,10 @@
 \usepackage{xassoccnt}
 \NewTotalDocumentCounter{totalfigures}
 \NewTotalDocumentCounter{totallistings}
+\NewTotalDocumentCounter{additionCounter}
 \DeclareAssociatedCounters{figure}{totalfigures}
 \DeclareAssociatedCounters{lstlisting}{totallistings}
+\setcounter{additionCounter}{0}
+\renewcommand{\theadditionCounter}{\Asbuk{additionCounter}}
 
 \usepackage[autostyle]{csquotes}

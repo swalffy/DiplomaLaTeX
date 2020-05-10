@@ -1,0 +1,56 @@
+\begin{lstlisting}[
+  language=Kotlin,
+  label={lis:android-auth-interceptor}
+]
+package com.github.swalffy.magnat_manager.utils.networking.interceptor
+
+import com.github.swalffy.magnat_manager.features.login.RefreshTokenUsecase
+import com.github.swalffy.magnat_manager.utils.*
+import com.github.swalffy.magnat_manager.utils.common.SharedPrefs
+import okhttp3.Interceptor
+import okhttp3.Response
+import org.koin.core.KoinComponent
+import org.koin.core.inject
+
+class AuthTokenInterceptor(
+    private val refreshTokenUsecase: RefreshTokenUsecase
+) : Interceptor, KoinComponent {
+
+    private val preferences: SharedPrefs by inject()
+
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val newRequest = chain.request().newBuilder().apply {
+            preferences.bearerToken?.let {
+                addHeader("Authorization", "Bearer $it")
+            }
+        }.build()
+
+        var response = chain.proceed(newRequest)
+        if (response.code() == 401) {
+            preferences.bearerToken = null
+            val refreshToken = preferences.refreshToken
+
+            if (refreshToken?.isNotEmpty() == true) {
+                when (tryRestoreSession(refreshToken)) {
+                    is Success -> {
+                        newRequest.newBuilder().run {
+                            preferences.bearerToken?.let {
+                                addHeader("Authorization", "Bearer $it")
+                            }
+                            build()
+                        }.let { response = chain.proceed(it) }
+                    }
+                    is Error -> {
+                        preferences.refreshToken = null
+                        preferences.bearerToken = null
+                    }
+                }
+            }
+        }
+        return response
+    }
+
+    private fun tryRestoreSession(refreshToken: String) =
+        refreshTokenUsecase.performTokenRefresh(refreshToken)
+}
+\end{lstlisting}

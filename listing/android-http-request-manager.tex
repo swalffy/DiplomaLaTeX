@@ -1,0 +1,145 @@
+\begin{lstlisting}[
+  language=Kotlin,
+  label={lis:android-http-request-manager}
+]
+package com.github.swalffy.magnat_manager.utils.networking.core
+
+import android.util.Log
+import com.github.swalffy.magnat_manager.utils.common.hashOf
+import com.github.swalffy.magnat_manager.utils.database.entity.network.NetworkRequestCacheDao
+import com.github.swalffy.magnat_manager.utils.database.entity.network.NetworkRequestCacheRecord
+import com.github.swalffy.magnat_manager.utils.networking.core.RequestMethod.BodyType
+import com.github.swalffy.magnat_manager.utils.networking.interceptor.AuthTokenInterceptor
+import com.github.swalffy.magnat_manager.utils.networking.model.FormDataModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
+import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.InputStream
+import java.util.concurrent.TimeUnit
+
+private const val HTTP_CALL_TAG = "sw_HTTP_CALL"
+
+class HttpRequestManager(
+    private val requestCacheDao: NetworkRequestCacheDao,
+    private val networkConfig: NetworkClientConfig,
+    private val jsonConverter: JsonConverter
+) {
+
+    private val client: OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(AuthTokenInterceptor())
+        .callTimeout(networkConfig.timeoutMillis, TimeUnit.MILLISECONDS)
+        .build()
+
+    suspend fun <T> request(
+        method: RequestMethod,
+        path: String,
+        queryParams: Map<String, Any?>? = null,
+        cacheControl: CacheControl<T>? = null,
+        onSuccess: ((InputStream) -> T)? = null,
+        onError: ((Int, InputStream?) -> T?)? = { code, _ ->
+            Log.w(HTTP_CALL_TAG, "HttpRequestManager request: some error in call $method $path with $code")
+
+            null
+        },
+        onException: ((Throwable) -> T)? = { throw it }
+    ): T? = withContext(Dispatchers.IO) {
+        val requestStartTime = System.currentTimeMillis()
+
+        val clearExpiredJob = async { clearExpiredRequests(requestStartTime) }
+
+        val request = buildRequest(
+            method = method,
+            path = path,
+            queryParams = queryParams
+        )
+
+        if (cacheControl?.isForceRequest == false) {
+            clearExpiredJob.await()
+
+            val cachedRecord = requestCacheDao.getByRequestHash(hashOf(method, request.url.toString()))
+
+            if (cachedRecord != null && cachedRecord.expires > requestStartTime) {
+                Log.d(HTTP_CALL_TAG, "HttpRequestManager request: $method $path already cached(expire in ${cachedRecord.expires - cacheControl.expiration})")
+                return@withContext null
+            }
+        }
+
+        runCatching {
+            client.newCall(request)
+                .execute().use { response ->
+                    Log.d(HTTP_CALL_TAG, "HttpRequestManager request: $method $path complete with ${response.code}")
+
+                    if (response.isSuccessful) {
+                        cacheControl?.let { cache ->
+                            NetworkRequestCacheRecord(
+                                id = hashOf(method.toString(), request.url),
+                                url = request.url.toString(),
+                                method = method.toString(),
+                                paramsHash = method.hashCode(),
+                                expires = requestStartTime + cache.expiration
+                            ).let(requestCacheDao::insert)
+                        }
+
+                        response.body?.byteStream()
+                            ?.let { stream ->
+                                onSuccess?.invoke(stream)
+                                    ?.also { cacheControl?.onCache?.invoke(it) }
+                            } ?: onError?.invoke(-1, null)
+                    } else {
+                        onError?.invoke(response.code, response.body?.byteStream())
+                    }
+                }
+        }.getOrElse {
+            Log.w(HTTP_CALL_TAG, "HttpRequestManager request: ", it)
+            onException?.invoke(it)
+        }
+    }
+
+    private fun buildRequest(
+        method: RequestMethod,
+        path: String,
+        queryParams: Map<String, Any?>? = null
+    ): Request {
+        val url = networkConfig.host.toHttpUrlOrNull()
+            ?.newBuilder()
+            ?.addPathSegments(path)
+            ?.also {
+                queryParams?.forEach { (key, value) ->
+                    it.addEncodedQueryParameter(key, value.toString())
+                }
+            }?.build()
+            ?: error("Can't build url. Base[${networkConfig.host}] path: [$path]")
+
+        val body = (method as? RequestMethod.RequestWithBody<*>)
+            ?.let { requestWithBody ->
+                when (requestWithBody.bodyType) {
+                    BodyType.JSON -> jsonConverter.toJson(requestWithBody.body)
+                        .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+                    BodyType.FORM_DATA -> (requestWithBody.body as? FormDataModel)
+                        ?.asMap
+                        ?.let { bodyMap ->
+                            MultipartBody.Builder()
+                                .setType(MultipartBody.FORM)
+                                .also {
+                                    bodyMap.forEach { (key, value) -> it.addFormDataPart(key, value) }
+                                }.build()
+                        } ?: throw error("Form data body should be Map<String, String>")
+                }
+            }
+
+        return Request.Builder()
+            .method(method.toString(), body)
+            .url(url)
+            .build()
+    }
+
+    private suspend fun clearExpiredRequests(currentTime: Long) {
+        requestCacheDao.dropExpired(currentTime)
+    }
+}
+\end{lstlisting}

@@ -1,0 +1,44 @@
+\begin{lstlisting}[
+  language=Kotlin,
+  label={lis:android-auth-interceptor}
+]
+package com.github.swalffy.magnat_manager.features.products
+
+import com.github.swalffy.magnat_manager.utils.Error
+import com.github.swalffy.magnat_manager.utils.Result
+import com.github.swalffy.magnat_manager.utils.Success
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
+
+class ProductListGetAllUseCase(
+    val productsRepository: ProductListRepository
+) {
+
+    suspend fun loadProducts(categoryId: Long): Result<List<ProductModel>> {
+        return coroutineScope {
+            val products = withContext(Dispatchers.IO) {
+                productsRepository.getAllProducts(categoryId = categoryId)
+            }
+
+            if (products?.isNotEmpty() == true) {
+                products.map {
+                    ProductModel(
+                        id = it.id,
+                        title = it.title,
+                        article = it.article,
+                        deleted = it.deleted,
+                        published = it.published,
+                        price = if (it.priceForPack)
+                            it.price * it.packing
+                        else
+                            it.price
+                    )
+                }.let { Success(it) }
+            } else {
+                Error(RuntimeException("No products"))
+            }
+        }
+    }
+}
+\end{lstlisting}

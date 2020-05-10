@@ -1,4 +1,4 @@
-%!TEX TS-program = xelatex
+% !TEX TS-program = xelatex
 \documentclass[14pt,a4paper]{scrartcl}
 
 \input{preamble.tex}
@@ -9,6 +9,7 @@
 
     \input{sec/0-cw.tex}
 
+    \clearpage
     \tableofcontents
 
 %    \input{sec/0-glossary.tex}
@@ -30,8 +31,7 @@
 
     \subsection{Проектирование базы данных}\label{subsec:design-db}\indent
 
-    \TODO{Ссылка на приложение}
-    Спроектированная диаграмма базы данных представлена в Приложении 1
+    Спроектированная диаграмма базы данных представлена в Приложении \ref{addition:rest-database}.
 
     \input{sec/2-mockup.tex}
     \input{sec/2-tech-review.tex}
@@ -59,4 +59,5 @@
 
     \input{sec/closing.tex}
 
+    \input{sec/additions.tex}
 \end{document}

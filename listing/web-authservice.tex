@@ -1,0 +1,202 @@
+\begin{lstlisting}[
+  language=TypeScript,
+  label={lis:web-authservice}
+]
+import {Injectable} from '@angular/core';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from "@angular/common/http";
+import {BehaviorSubject, Observable} from "rxjs";
+import {LocalStorageService} from "angular-2-local-storage";
+import {TokenResponse} from "../model/token-response";
+import {catchError, filter, finalize, switchMap, take, tap} from "rxjs/operators";
+import {RegistrationModel} from "../model/registration-model";
+import {Api} from "../constants";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthorizationService implements HttpInterceptor {
+
+  private REGISTR_URL = Api.REGISTER;
+  private TOKEN_URL = Api.TOKEN;
+
+  private ACCESS_TOKEN = "access_token";
+  private REFRESH_TOKEN = "refresh_token";
+  private EXPIRES = "expires";
+  private GRANT_TYPE = "grant_type";
+  private USERNAME = "username";
+  private PASSWORD = "password";
+  private CLIENT_ID = "client_id";
+  private CLIENT_SECRET = "client_secret";
+  private CLIENT_ID_VALUE = "web";
+  private CLIENT_SECRET_VALUE = "secret";
+  private SCOPE = "scope";
+  private SCOPE_READ = "read";
+
+  private isRefreshingToken: boolean = false;
+  private tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
+  constructor(
+    private http: HttpClient,
+    private localStorage: LocalStorageService,
+  ) {
+  }
+
+  get bearerToken(): string {
+    return this.localStorage.get(this.ACCESS_TOKEN);
+  }
+
+  get refreshToken(): string {
+    return this.localStorage.get(this.REFRESH_TOKEN)
+  }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const bearerToken = this.bearerToken;
+    let req = this.appendTokenToRequest(request, bearerToken);
+
+    if (bearerToken) {
+      req = this.appendTokenToRequest(request, bearerToken);
+    } else {
+      req = request;
+    }
+
+    return next.handle(req).pipe(
+      catchError(err => {
+        if (err instanceof HttpErrorResponse) {
+          switch ((<HttpErrorResponse>err).status) {
+            case 401:
+              return this.handle401Error(request, next);
+            default: {
+              throw  err;
+            }
+          }
+        } else {
+          throw err;
+        }
+      })
+    )
+  }
+
+  login(username: string, password: string): Observable<TokenResponse> {
+    return this.getToken(username, password);
+  }
+
+  logout() {
+    this.cleanTokenData();
+  }
+
+  isAuthenticated(): boolean {
+    if (this.bearerToken) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  register(registrationModel: RegistrationModel) {
+    return this.http.post(this.REGISTR_URL, registrationModel)
+  }
+
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
+    if (!this.isRefreshingToken && this.refreshToken) {
+      this.isRefreshingToken = true;
+      this.tokenSubject.next(null);
+
+      return this.refreshAccessToken().pipe(
+        switchMap((token: TokenResponse) => {
+          if (token) {
+            this.tokenSubject.next(token.access_token);
+            this.saveTokenData(token);
+
+            return next.handle(this.appendTokenToRequest(request, token.access_token));
+          }
+        }),
+        catchError(() => {
+          this.cleanTokenData();
+          return next.handle(request);
+        }),
+        finalize(() => {
+          this.isRefreshingToken = false;
+        })
+      )
+    } else {
+      this.isRefreshingToken = false;
+
+      return this.tokenSubject
+        .pipe(filter(token => token != null),
+          take(1),
+          switchMap(token => {
+            return next.handle(this.appendTokenToRequest(request, token))
+          })
+        )
+    }
+  }
+
+  private getToken(username: string, password: string): Observable<TokenResponse> {
+    const url = this.TOKEN_URL;
+    const body = new FormData();
+
+    this.appendClientAuthData(body);
+    body.append(this.GRANT_TYPE, this.PASSWORD);
+    body.append(this.SCOPE, this.SCOPE_READ);
+    body.append(this.USERNAME, username);
+    body.append(this.PASSWORD, password);
+
+    return this.http.post<TokenResponse>(url, body)
+      .pipe(
+        tap(success => {
+          console.log("success" + success.access_token);
+          this.saveTokenData(success);
+        })
+    );
+  }
+
+  private refreshAccessToken(): Observable<TokenResponse> {
+    const refreshToken: string = this.refreshToken;
+    const url = this.TOKEN_URL;
+    const body = new FormData();
+
+    this.appendClientAuthData(body);
+    body.append(this.GRANT_TYPE, this.REFRESH_TOKEN);
+    body.append(this.REFRESH_TOKEN, refreshToken);
+
+    return this.http.post<TokenResponse>(url, body)
+  }
+
+  private saveTokenData(tokenData: TokenResponse) {
+    const currentTime = Date.now();
+    const expires = currentTime + (tokenData.expires_in * 1000);
+
+    this.localStorage.set(this.ACCESS_TOKEN, tokenData.access_token);
+    this.localStorage.set(this.REFRESH_TOKEN, tokenData.refresh_token);
+    this.localStorage.set(this.EXPIRES, expires);
+  }
+
+  private cleanTokenData() {
+    this.localStorage.remove(
+      this.ACCESS_TOKEN,
+      this.REFRESH_TOKEN,
+      this.EXPIRES
+    )
+  }
+
+  private appendClientAuthData(data: FormData) {
+    data.append(this.CLIENT_ID, this.CLIENT_ID_VALUE);
+    data.append(this.CLIENT_SECRET, this.CLIENT_SECRET_VALUE);
+  }
+
+  private appendTokenToRequest(request: HttpRequest<any>, token: string) {
+    return request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+}
+\end{lstlisting}

@@ -1,0 +1,59 @@
+\begin{lstlisting}[
+  language=TypeScript,
+  label={lis:web-mgr-product-service}
+]
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Api} from "../../constants";
+import {Product} from "../../model/product";
+import {Observable} from "rxjs";
+import {ProductDetails} from "../../model/product-details";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MgrProductService {
+
+  private BASE_URL = Api.MGR_PRODUCTS;
+  private DELETED_PATH = "/deleted";
+  private PUBLISHED_PATH = "/published";
+
+  constructor(
+  private http: HttpClient
+  ) { }
+
+  getByCategoryId(id: number): Observable<Product[]> {
+    const url = this.BASE_URL;
+    const options = {
+      params: new HttpParams().set('categoryId', id.toString())
+    };
+
+    return this.http.get<Product[]>(url, options)
+  }
+
+  getDetailsById(id: number): Observable<ProductDetails> {
+    const url = this.BASE_URL + "/" + id;
+
+    return this.http.get<ProductDetails>(url)
+  }
+
+  toggleDeleted(id: number): Observable<boolean> {
+    const url = this.BASE_URL + this.DELETED_PATH;
+
+    return this.http.put<boolean>(url, id)
+  }
+
+  togglePublihsed(id: number) {
+    const url = this.BASE_URL + this.PUBLISHED_PATH;
+
+    return this.http.put<boolean>(url, id)
+  }
+
+  update(productDetails: ProductDetails): Observable<ProductDetails> {
+    const url = this.BASE_URL;
+
+    return this.http.put<ProductDetails>(url, productDetails);
+  }
+}
+
+\end{lstlisting}

@@ -1,0 +1,58 @@
+\begin{lstlisting}[
+  language=Kotlin,
+  label={lis:android-recyclerview-adapter}
+]
+package com.github.swalffy.magnat_manager.features.products
+
+import android.view.View.*
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.list_item_product.*
+
+class ProductListRecyclerAdapter(
+    private val onClick: (Long) -> Unit
+) : RecyclerView.Adapter<ProductListRecyclerAdapter.ProductListItemHolder>() {
+
+    private val items = mutableListOf<ProductModel>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListItemHolder {
+        val inflatedView = parent.inflate(R.layout.list_item_product, false)
+        return ProductListItemHolder(inflatedView)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+    override fun onBindViewHolder(holder: ProductListItemHolder, position: Int) {
+        val product = items[holder.adapterPosition]
+        holder.bind(product)
+    }
+
+    fun cleanAddAll(newItems: List<ProductModel>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
+    inner class ProductListItemHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+
+        init {
+            containerView.setOnClickListener {
+                val productItem = items[adapterPosition]
+
+                onClick.invoke(productItem.id)
+            }
+        }
+
+        fun bind(product: ProductModel) {
+            text_title.text = product.title
+            text_article.text = product.article
+            view_deleted.visibility = if (product.deleted) VISIBLE else INVISIBLE
+            view_published.visibility = if (product.published) INVISIBLE else VISIBLE
+            text_price.text = product.price.toString()
+        }
+    }
+}
+\end{lstlisting}
