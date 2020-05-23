@@ -5,14 +5,17 @@
 
 \begin{document}
 
+    \pagestyle{empty}
+
     \input{sec/titlepage.tex}
 
     \input{sec/0-cw.tex}
 
     \clearpage
-    \tableofcontents
+    \tableofcontents\thispagestyle{empty}
 
-%    \input{sec/0-glossary.tex}
+   \input{sec/0-glossary.tex}
+    \pagestyle{plain}
     \input{sec/0-intro.tex}
     \input{sec/1-analysis.tex}
 
@@ -23,15 +26,11 @@
     \input{sec/2-dev-stages}
     \input{sec/2-functionality}
     \input{sec/2-architecture}
+    \input{sec/2-use-case}
 
-    \subsection{Проектирование диаграммы вариантов использования}\label{subsec:design-use-case}\indent
+    \subsection{Проектирование БД}\label{subsec:design-db}\indent
 
-    Диаграмма вариантов использования представлена на рисунке \ref{use-case}
-    \addimghere{use-case}{0.7}{Диаграмма вариантов использования}
-
-    \subsection{Проектирование базы данных}\label{subsec:design-db}\indent
-
-    Спроектированная диаграмма базы данных представлена в Приложении \ref{addition:rest-database}.
+    Спроектированная диаграмма \hyperlink{gloss:db}{БД} представлена в Приложении \ref{addition:rest-database}.
 
     \input{sec/2-mockup.tex}
     \input{sec/2-tech-review.tex}
@@ -40,7 +39,7 @@
 
     \subsection{Вывод по главе 2}\label{subsec:2-conclusion}\indent
 
-    Во второй главе были описаны основные этапы разработки приложения, описаны функционал, а также основные технологии и фреймворки, которые будут использованы в процессе разработки, представлена диаграмма вариантов использования, схема БД, диаграммы деятельности, макеты основных экранов и сформированы требования для каждого из экранов разрабатываемых клиентов.
+    Во второй главе были описаны основные этапы разработки приложения, описаны функционал, а также основные технологии и фреймворки, которые будут использованы в процессе разработки, представлена диаграмма вариантов использования, схема \hyperlink{gloss:db}{БД}, диаграммы деятельности, макеты основных экранов и сформированы требования для каждого из экранов разрабатываемых клиентов.
 
     Все упомянутые выше элементы будут реализованы во время разработки продукта, процесс которой описан в следующей главе.
 
