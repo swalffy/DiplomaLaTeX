@@ -118,6 +118,7 @@
   colorlinks, urlcolor={black}, % Все ссылки черного цвета, кликабельные
   linkcolor={black}, citecolor={black}, filecolor={black}
 }
+\urlstyle{rm}
 
 \renewcommand{\baselinestretch}{1.5} % Полуторный межстрочный интервал
 \parindent 12mm % Абзацный отступ
@@ -258,12 +259,18 @@
 \newcommand{\TODO}[1]{\setlength\fboxsep{15pt}\par\noindent\colorbox{shadecolor}
 {\textcolor{red}{\bfseries\parbox{\dimexpr\textwidth-2\fboxsep\relax}{TODO: #1}}}}
 
+% Declare counters
+
 \usepackage{xassoccnt}
 \NewTotalDocumentCounter{totalfigures}
 \NewTotalDocumentCounter{totallistings}
 \NewTotalDocumentCounter{additionCounter}
+\NewTotalDocumentCounter{biblioCounter}
 \DeclareAssociatedCounters{figure}{totalfigures}
 \DeclareAssociatedCounters{lstlisting}{totallistings}
 \setcounter{additionCounter}{0}
+
+\def\oldbibitem{} \let\oldbibitem=\bibitem
+\def\bibitem{\stepcounter{biblioCounter}\oldbibitem}
 
 \usepackage[autostyle]{csquotes}
