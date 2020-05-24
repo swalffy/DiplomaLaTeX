@@ -176,11 +176,13 @@
 \DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
 \captionsetup[figure]{font=small, justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись рисунка по центру
 \captionsetup[table]{font=small, justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
-\captionsetup[lstlisting]{justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись листинга по центру
+\captionsetup[lstlisting]{font=small, justification=centering, labelsep=defffis, format=plain, labelfont=bf, textfont=bf} % Подпись листинга по центру
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
 \addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг}} % TODO check listing numbering
 %\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг \thesection.\arabic{lstlisting}}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\addto\captionsrussian{\renewcommand{\refname}{Список использованных источников}}
+% \renewcommand{\refname}{Reference}
 
 % Заголовки секций в оглавлении в верхнем регистре
 \usepackage{textcase}
@@ -204,9 +206,6 @@
 \titleformat{\subsubsection}[block]{\normalsize\bfseries}{}{15mm}{\thesubsubsection\quad#1}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 \titlespacing*{\subsection}{0mm}{0.3em}{0.2em}
-
-\usepackage{lastpage} % Подсчет количества страниц
-\setcounter{page}{2}  % Начало нумерации страниц
 
 % Пользовательские функции
 % Секции без номеров (введение, заключение...), вместо section*{}
@@ -235,14 +234,16 @@
 
 \newcommand\capmystring[1]{\capmystringaux#1\relax}
 \def\capmystringaux#1#2\relax{\uppercase{#1}\lowercase{#2}}
-%\newcounter{additionCounter}
+% \newcommand\textlcsc[1]{\textsc{\MakeLowercase{#1}}}
+
+
 \newcommand{\addition}[3] {
   \clearpage
   \refstepcounter{additionCounter}
   \label{addition:#1}
-  \addcontentsline{toc}{section}{
-    \emph{\capmystring{Приложение} \theadditionCounter}. \capmystring{#2}
-  }
+  \addcontentsline{toc}{subsection}{
+    \emph{\capmystring{Приложение} \theadditionCounter}. #2
+}
 
   \begin{flushright}
     \MakeUppercase{Приложение} \theadditionCounter
@@ -260,6 +261,9 @@
 {\textcolor{red}{\bfseries\parbox{\dimexpr\textwidth-2\fboxsep\relax}{TODO: #1}}}}
 
 % Declare counters
+
+\usepackage{lastpage} % Подсчет количества страниц
+\setcounter{page}{2}  % Начало нумерации страниц
 
 \usepackage{xassoccnt}
 \NewTotalDocumentCounter{totalfigures}

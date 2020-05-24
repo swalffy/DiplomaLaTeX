@@ -54,12 +54,14 @@
 \contentsline {subsubsection}{\numberline {3.3.5}Сборка и структура проекта}{53}{subsubsection.3.3.5}%
 \contentsline {subsection}{\numberline {3.4}Вывод по главе 3}{54}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Заключение}{54}{section.4}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 1}. \uppercase {С}\lowercase {хема БД} }{58}{additionCounter.1}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 2}. \uppercase {Л}\lowercase {истинг AuthorizationService Web-клиента} }{59}{additionCounter.2}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 3}. \uppercase {Л}\lowercase {истинг MgrProductService Web-клиента} }{62}{additionCounter.3}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 4}. \uppercase {Л}\lowercase {истинг ProductAdd компонента Web-клиента} }{63}{additionCounter.4}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 5}. \uppercase {Л}\lowercase {истинг CSS для ProductAdd компонента Web-клиента} }{66}{additionCounter.5}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 6}. \uppercase {Л}\lowercase {истинг AuthTokenInterceptor Android-клиента} }{67}{additionCounter.6}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 7}. \uppercase {Л}\lowercase {истинг ProductListGetAllUseCase Android-клиента} }{68}{additionCounter.7}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 8}. \uppercase {Л}\lowercase {истинг HttpRequestManager Android-клиента} }{69}{additionCounter.8}%
-\contentsline {section}{ \emph {\uppercase {П}\lowercase {риложение} 9}. \uppercase {Л}\lowercase {истинг ProductListRecyclerAdapter Android-клиента} }{71}{additionCounter.9}%
+\contentsline {section}{Список использованных источников}{56}{Item.43}%
+\contentsline {section}{Приложения}{58}{Item.43}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 1}. Схема БД }{58}{additionCounter.1}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 2}. Листинг AuthorizationService Web-клиента }{59}{additionCounter.2}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 3}. Листинг MgrProductService Web-клиента }{62}{additionCounter.3}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 4}. Листинг ProductAdd компонента Web-клиента }{63}{additionCounter.4}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 5}. Листинг CSS для ProductAdd компонента Web-клиента }{66}{additionCounter.5}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 6}. Листинг AuthTokenInterceptor Android-клиента }{67}{additionCounter.6}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 7}. Листинг ProductListGetAllUseCase Android-клиента }{68}{additionCounter.7}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 8}. Листинг HttpRequestManager Android-клиента }{69}{additionCounter.8}%
+\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 9}. Листинг ProductListRecyclerAdapter Android-клиента }{71}{additionCounter.9}%
