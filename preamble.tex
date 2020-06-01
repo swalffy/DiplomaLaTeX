@@ -109,6 +109,7 @@
 \usepackage{float}
 
 %images
+\usepackage{rotating}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{chngcntr}
@@ -127,8 +128,8 @@
 \hyphenpenalty=10000 % Частота переносов
 % \widowpenalties=3 10000 10000 150
 \clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
-% \widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
-% 
+\widowpenalty=100 % Запрещаем разрыв страницы после последней строки абзаца
+
 %page paddings
 \usepackage[
   left=3cm,
@@ -149,13 +150,18 @@
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 
 % Содержание
+% \usepackage{titletoc}
 \usepackage{tocloft}
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeTextUppercase} % СОДЕРЖАНИЕ
 \renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
 \renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
 \renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
 \setcounter{tocdepth}{2}                            % Глубина оглавления, до subsubsection
-\addtocontents{toc}{\protect\thispagestyle{empty}}
+% \addtocontents{toc}{\protect\thispagestyle{empty}}
+\makeatletter
+\let\latexl@section\l@section
+\def\l@section#1#2{\begingroup\let\numberline\@gobble\latexl@section{#1}{#2}\endgroup}
+\makeatother
 
 % Нумерация страниц посередине сверху
 \usepackage{fancyhdr}
@@ -182,7 +188,6 @@
 %\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг \thesection.\arabic{lstlisting}}}
 \renewcommand{\thefigure}{\thesection.\arabic{figure}}
 \addto\captionsrussian{\renewcommand{\refname}{Список использованных источников}}
-% \renewcommand{\refname}{Reference}
 
 % Заголовки секций в оглавлении в верхнем регистре
 \usepackage{textcase}
@@ -201,11 +206,16 @@
 
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{\large\bfseries}{}{0mm}{\clearpage\centering{\MakeUppercase{#1}}\vspace{18pt}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
+\titleformat{\section}{\large\bfseries\clearpage}{}{0mm}{\centering{\MakeUppercase{#1}}\vspace{18pt}\setcounter{figure}{0}\setcounter{lstlisting}{0}}
 \titleformat{\subsection}[block]{\fontsize{15}{18}\selectfont\bfseries}{}{1.5cm}{\thesubsection\quad#1}
 \titleformat{\subsubsection}[block]{\normalsize\bfseries}{}{15mm}{\thesubsubsection\quad#1}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
 \titlespacing*{\subsection}{0mm}{0.3em}{0.2em}
+
+% Bibliography nubering
+\makeatletter
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
+\makeatother
 
 % Пользовательские функции
 % Секции без номеров (введение, заключение...), вместо section*{}
@@ -232,6 +242,13 @@
   \end{figure}
 }
 
+\newcommand{\pageblock}[1] {
+  \begin{minipage}{\textwidth}
+    #1
+    \bigskip 
+  \end{minipage}
+}
+
 \newcommand\capmystring[1]{\capmystringaux#1\relax}
 \def\capmystringaux#1#2\relax{\uppercase{#1}\lowercase{#2}}
 % \newcommand\textlcsc[1]{\textsc{\MakeLowercase{#1}}}
@@ -241,9 +258,9 @@
   \clearpage
   \refstepcounter{additionCounter}
   \label{addition:#1}
-  \addcontentsline{toc}{subsection}{
-    \emph{\capmystring{Приложение} \theadditionCounter}. #2
-}
+%   \addcontentsline{toc}{subsection}{
+%     \emph{\capmystring{Приложение} \theadditionCounter}. #2
+% }
 
   \begin{flushright}
     \MakeUppercase{Приложение} \theadditionCounter
@@ -255,6 +272,42 @@
 
   #3
 }
+
+
+% \begin{lstlisting}[language=TypeScript, captionpos=b,
+%   label={lis:android-structure},
+%   caption={Пример структуры Android приложения}
+%   ]
+%   .
+%   |-- app
+%   |   |-- src
+%   |   |   |-- androidTest
+%   |   |   |-- main
+%   |   |   |   |-- java
+%   |   |   |   |-- res
+%   |   |   |   `-- AndroidManifest.xml
+%   |   |   `-- test
+%   |   |-- build.gradle
+%   |   `-- proguard-rules.pro
+%   |-- build.gradle
+%   |-- settings.gradle
+%   |-- gradle.properties
+%   |-- gradlew
+%   `-- gradlew.bat
+%   \end{lstlisting}
+
+
+\newcommand{\listing}[4] {
+  \begin{minipage}{\textwidth}
+    \begin{lstlisting}[language=#1, captionpos=b,
+      label={lis:#2},
+      caption={#3}
+      ]
+      #4
+    \end{lstlisting}      
+  \end{minipage}
+}
+
 
 \definecolor{shadecolor}{RGB}{255,255,0}
 \newcommand{\TODO}[1]{\setlength\fboxsep{15pt}\par\noindent\colorbox{shadecolor}

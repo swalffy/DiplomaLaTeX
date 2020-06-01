@@ -1,26 +1,24 @@
-\thispagestyle {empty}
 \selectlanguage *{russian}
 \selectlanguage *{russian}
-\contentsline {section}{Перечень условных обозначений}{7}{figure.caption.1}%
 \contentsline {section}{Введение}{9}{figure.caption.1}%
-\contentsline {section}{\numberline {1}Глава 1 Анализ предметной области клиент-серверных приложений}{10}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Основные сведения}{11}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Обзор подходов реализации подобных систем}{12}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Выводы по главе 1}{13}{subsection.1.3}%
-\contentsline {section}{\numberline {2}Глава 2 Проектирование системы разрабатываемых приложений}{13}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Этапы разработки системы приложений}{14}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Определение общего функционала приложений}{15}{subsection.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.1}Общий функционал Rest-сервера}{15}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Общий функционал Web-клиента}{16}{subsubsection.2.2.2}%
-\contentsline {subsubsection}{\numberline {2.2.3}Общий функционал Android-клиента}{17}{subsubsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.3}Проектирование общей архитектуры приложения}{17}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Архитектурный паттерн MVC}{19}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Архитектурный паттерн MVVM}{20}{subsubsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.4}Проектирование диаграммы вариантов использования}{20}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Проектирование БД}{22}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Проектирование макетов основных экранов приложения}{22}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {2.6.1}Мокапы Web-клиента}{22}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {2.6.2}Мокапы Android-клиента}{23}{subsubsection.2.6.2}%
+\contentsline {section}{\numberline {1}Глава 1 Анализ предметной области}{10}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Основные сведения}{10}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Обзор подходов реализации клиент-серверных приложений}{11}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Выводы по главе 1}{12}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Глава 2 Проектирование системы разрабатываемых приложений}{12}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Этапы разработки системы приложений}{13}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Определение общего функционала приложений}{14}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Общий функционал Rest-сервера}{14}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Общий функционал Web-клиента}{15}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Общий функционал Android-клиента}{16}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Проектирование общей архитектуры приложения}{16}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Архитектурный паттерн MVC}{17}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Архитектурный паттерн MVVM}{18}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}Проектирование диаграммы вариантов использования}{19}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Проектирование БД}{20}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Проектирование макетов основных экранов приложения}{20}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Мокапы Web-клиента}{21}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Мокапы Android-клиента}{24}{subsubsection.2.6.2}%
 \contentsline {subsection}{\numberline {2.7}Описание технологий, используемых в разработке}{25}{subsection.2.7}%
 \contentsline {subsubsection}{\numberline {2.7.1}Технологии, использующиеся при разработке REST-сервера}{25}{subsubsection.2.7.1}%
 \contentsline {subsubsection}{\numberline {2.7.2}Технологии, использующиеся при разработке Web-клиента}{27}{subsubsection.2.7.2}%
@@ -30,38 +28,29 @@
 \contentsline {subsubsection}{\numberline {2.8.2}Основные компоненты Android-клиента}{32}{subsubsection.2.8.2}%
 \contentsline {subsection}{\numberline {2.9}Диаграмма деятельности некоторых функций приложения}{33}{subsection.2.9}%
 \contentsline {subsubsection}{\numberline {2.9.1}Диаграмма деятельности Web-клиента}{33}{subsubsection.2.9.1}%
-\contentsline {subsubsection}{\numberline {2.9.2}Диаграмма деятельности Android-клиента}{34}{subsubsection.2.9.2}%
+\contentsline {subsubsection}{\numberline {2.9.2}Диаграмма деятельности Android-клиента}{35}{subsubsection.2.9.2}%
 \contentsline {subsection}{\numberline {2.10}Вывод по главе 2}{35}{subsection.2.10}%
 \contentsline {section}{\numberline {3}Глава 3 Реализация системы приложений интернет-магазина}{35}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Реализация приложения REST-сервера}{36}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Описание архитектурных решений}{36}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Описание основных аннотаций}{37}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Описание процесса авторизации}{38}{subsubsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1}Реализация приложения REST-сервера}{37}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Описание архитектурных решений}{37}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Описание основных аннотаций}{38}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Описание процесса авторизации}{39}{subsubsection.3.1.3}%
 \contentsline {subsubsection}{\numberline {3.1.4}Описание работы почтового клиента с генерацией шаблонов}{39}{subsubsection.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.1.5}Unit-тестирование}{39}{subsubsection.3.1.5}%
-\contentsline {subsubsection}{\numberline {3.1.6}Сборка проекта}{40}{subsubsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.2}Реализация приложения Web-клиента}{40}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Описание архитектурных решений}{40}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Описание основных сервисов}{41}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Описание принципов построения пользовательского интерфейса}{42}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Описание основных сторонних библиотек}{44}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Unit-тестирование}{40}{subsubsection.3.1.5}%
+\contentsline {subsubsection}{\numberline {3.1.6}Сборка проекта}{41}{subsubsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.2}Реализация приложения Web-клиента}{41}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Описание архитектурных решений}{41}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Описание основных сервисов}{42}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Описание принципов построения пользовательского интерфейса}{43}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Описание основных сторонних библиотек}{45}{subsubsection.3.2.4}%
 \contentsline {subsubsection}{\numberline {3.2.5}Сборка и структура проекта}{45}{subsubsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.3}Реализация приложения Android-клиента}{47}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Описание архитектурных решений}{47}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Описание процесса кэширования данных}{49}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Описание принципов построения пользовательского интерфейса}{51}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Описание использованных сторонних библиотек}{52}{subsubsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3}Реализация приложения Android-клиента}{48}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Описание архитектурных решений}{48}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Описание процесса кэширования данных}{50}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Описание принципов построения пользовательского интерфейса}{52}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Описание использованных сторонних библиотек}{53}{subsubsection.3.3.4}%
 \contentsline {subsubsection}{\numberline {3.3.5}Сборка и структура проекта}{53}{subsubsection.3.3.5}%
 \contentsline {subsection}{\numberline {3.4}Вывод по главе 3}{54}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Заключение}{54}{section.4}%
-\contentsline {section}{Список использованных источников}{56}{Item.43}%
-\contentsline {section}{Приложения}{58}{Item.43}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 1}. Схема БД }{58}{additionCounter.1}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 2}. Листинг AuthorizationService Web-клиента }{59}{additionCounter.2}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 3}. Листинг MgrProductService Web-клиента }{62}{additionCounter.3}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 4}. Листинг ProductAdd компонента Web-клиента }{63}{additionCounter.4}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 5}. Листинг CSS для ProductAdd компонента Web-клиента }{66}{additionCounter.5}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 6}. Листинг AuthTokenInterceptor Android-клиента }{67}{additionCounter.6}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 7}. Листинг ProductListGetAllUseCase Android-клиента }{68}{additionCounter.7}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 8}. Листинг HttpRequestManager Android-клиента }{69}{additionCounter.8}%
-\contentsline {subsection}{ \emph {\uppercase {П}\lowercase {риложение} 9}. Листинг ProductListRecyclerAdapter Android-клиента }{71}{additionCounter.9}%
+\contentsline {section}{Заключение}{55}{subsection.3.4}%
+\contentsline {section}{Список использованных источников}{56}{Item.44}%
+\contentsline {section}{Приложение}{58}{additionCounter.1}%
