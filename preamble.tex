@@ -217,6 +217,10 @@
 \renewcommand*{\@biblabel}[1]{\hfill#1.}
 \makeatother
 
+\makeatletter
+\g@addto@macro\@openbib@code{\setlength{\itemsep}{-2pt}}
+\makeatother
+
 % Пользовательские функции
 % Секции без номеров (введение, заключение...), вместо section*{}
 \newcommand{\anonsection}[1]{
@@ -272,30 +276,6 @@
 
   #3
 }
-
-
-% \begin{lstlisting}[language=TypeScript, captionpos=b,
-%   label={lis:android-structure},
-%   caption={Пример структуры Android приложения}
-%   ]
-%   .
-%   |-- app
-%   |   |-- src
-%   |   |   |-- androidTest
-%   |   |   |-- main
-%   |   |   |   |-- java
-%   |   |   |   |-- res
-%   |   |   |   `-- AndroidManifest.xml
-%   |   |   `-- test
-%   |   |-- build.gradle
-%   |   `-- proguard-rules.pro
-%   |-- build.gradle
-%   |-- settings.gradle
-%   |-- gradle.properties
-%   |-- gradlew
-%   `-- gradlew.bat
-%   \end{lstlisting}
-
 
 \newcommand{\listing}[4] {
   \begin{minipage}{\textwidth}

@@ -29,28 +29,28 @@
 \contentsline {subsection}{\numberline {2.9}Диаграмма деятельности некоторых функций приложения}{33}{subsection.2.9}%
 \contentsline {subsubsection}{\numberline {2.9.1}Диаграмма деятельности Web-клиента}{33}{subsubsection.2.9.1}%
 \contentsline {subsubsection}{\numberline {2.9.2}Диаграмма деятельности Android-клиента}{35}{subsubsection.2.9.2}%
-\contentsline {subsection}{\numberline {2.10}Вывод по главе 2}{35}{subsection.2.10}%
-\contentsline {section}{\numberline {3}Глава 3 Реализация системы приложений интернет-магазина}{35}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Реализация приложения REST-сервера}{37}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Описание архитектурных решений}{37}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}Описание основных аннотаций}{38}{subsubsection.3.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.3}Описание процесса авторизации}{39}{subsubsection.3.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.4}Описание работы почтового клиента с генерацией шаблонов}{39}{subsubsection.3.1.4}%
-\contentsline {subsubsection}{\numberline {3.1.5}Unit-тестирование}{40}{subsubsection.3.1.5}%
-\contentsline {subsubsection}{\numberline {3.1.6}Сборка проекта}{41}{subsubsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.2}Реализация приложения Web-клиента}{41}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Описание архитектурных решений}{41}{subsubsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.2}Описание основных сервисов}{42}{subsubsection.3.2.2}%
-\contentsline {subsubsection}{\numberline {3.2.3}Описание принципов построения пользовательского интерфейса}{43}{subsubsection.3.2.3}%
-\contentsline {subsubsection}{\numberline {3.2.4}Описание основных сторонних библиотек}{45}{subsubsection.3.2.4}%
-\contentsline {subsubsection}{\numberline {3.2.5}Сборка и структура проекта}{45}{subsubsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.3}Реализация приложения Android-клиента}{48}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Описание архитектурных решений}{48}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Описание процесса кэширования данных}{50}{subsubsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3}Описание принципов построения пользовательского интерфейса}{52}{subsubsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.4}Описание использованных сторонних библиотек}{53}{subsubsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.5}Сборка и структура проекта}{53}{subsubsection.3.3.5}%
-\contentsline {subsection}{\numberline {3.4}Вывод по главе 3}{54}{subsection.3.4}%
-\contentsline {section}{Заключение}{55}{subsection.3.4}%
-\contentsline {section}{Список использованных источников}{56}{Item.44}%
-\contentsline {section}{Приложение}{58}{additionCounter.1}%
+\contentsline {subsection}{\numberline {2.10}Вывод по главе 2}{37}{subsection.2.10}%
+\contentsline {section}{\numberline {3}Глава 3 Реализация системы приложений интернет-магазина}{37}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Реализация приложения REST-сервера}{38}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Описание архитектурных решений}{38}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Описание основных аннотаций}{39}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Описание процесса авторизации}{40}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Описание работы почтового клиента с генерацией шаблонов}{40}{subsubsection.3.1.4}%
+\contentsline {subsubsection}{\numberline {3.1.5}Unit-тестирование}{41}{subsubsection.3.1.5}%
+\contentsline {subsubsection}{\numberline {3.1.6}Сборка проекта}{42}{subsubsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.2}Реализация приложения Web-клиента}{42}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Описание архитектурных решений}{42}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Описание основных сервисов}{43}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Описание принципов построения пользовательского интерфейса}{44}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Описание основных сторонних библиотек}{46}{subsubsection.3.2.4}%
+\contentsline {subsubsection}{\numberline {3.2.5}Сборка и структура проекта}{46}{subsubsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.3}Реализация приложения Android-клиента}{49}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Описание архитектурных решений}{49}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Описание процесса кэширования данных}{51}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Описание принципов построения пользовательского интерфейса}{53}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Описание использованных сторонних библиотек}{54}{subsubsection.3.3.4}%
+\contentsline {subsubsection}{\numberline {3.3.5}Сборка и структура проекта}{54}{subsubsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.4}Вывод по главе 3}{55}{subsection.3.4}%
+\contentsline {section}{Заключение}{56}{subsection.3.4}%
+\contentsline {section}{Список использованных источников}{58}{Item.45}%
+\contentsline {section}{Приложение}{59}{additionCounter.1}%
